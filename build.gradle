@@ -14,6 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 repositories {
+    mavenLocal()
     maven { // TOP
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
@@ -115,22 +116,20 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_base_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_base_version}:${jei_version}")
 
-    compile fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}")
+    compile fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}_${hwyla_base_version}")
 
-    compile fg.deobf("mcjty.theoneprobe:TheOneProbe-1.15:${top_version}") {
-        transitive = false
-    }
+    compile fg.deobf("mcjty.theoneprobe:TheOneProbe-${minecraft_base_version}:${minecraft_base_version}-${top_version}")
 
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.15.1:${crafttweaker_version}")
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${crafttweaker_base_version}:${crafttweaker_version}")
 
     if (findProject(':Libnonymous') != null) {
         compile project(':Libnonymous')
     } else {
-        compile fg.deobf ("com.davenonymous.libnonymous:libnonymous-1.15.2:${libnonymous_version}:")
+        compile fg.deobf ("com.davenonymous.libnonymous:libnonymous-${libnonymous_base_version}:${libnonymous_version}:")
     }
 
 }

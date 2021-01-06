@@ -20,7 +20,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
@@ -54,7 +54,7 @@ public class BonsaiPotBlock extends BaseBlock implements IGrowable, IWaterLoggab
     boolean hopping;
 
     public BonsaiPotBlock(boolean hopping) {
-        super(Properties.create(Material.CLAY, MaterialColor.CLAY)
+        super(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.CLAY)
                 .hardnessAndResistance(2.0F)
                 .sound(SoundType.WOOD)
                 .harvestTool(ToolType.AXE)
@@ -278,7 +278,7 @@ public class BonsaiPotBlock extends BaseBlock implements IGrowable, IWaterLoggab
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        IFluidState fluidState = context.getWorld().getFluidState(context.getPos());
+        FluidState fluidState = context.getWorld().getFluidState(context.getPos());
         return super.getStateForPlacement(context).with(BlockStateProperties.WATERLOGGED, Boolean.valueOf(fluidState.getFluid() == Fluids.WATER));
     }
 
@@ -298,7 +298,7 @@ public class BonsaiPotBlock extends BaseBlock implements IGrowable, IWaterLoggab
 
 
     @Override
-    public IFluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return state.get(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 

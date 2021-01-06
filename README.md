@@ -2,6 +2,9 @@
 
 A Minecraft mod adding a block that grows small trees in two block spaces.
 
+For local build, if the version of libnonymous was not updated by the original developer, you will need to build libnonymous from my fork as well
+https://github.com/ScrewTSW/libnonymous/tree/1.16.4
+
 ## Changes to Bonsai Trees 1:
 
 - Soils, Saplings and Drops are now stored as recipes (Thanks @Darkhax!)

@@ -10,6 +10,7 @@ import com.davenonymous.bonsaitrees2.setup.ProxyServer;
 import com.davenonymous.bonsaitrees2.setup.Registration;
 import com.davenonymous.bonsaitrees2.util.Logz;
 import com.davenonymous.libnonymous.setup.IProxy;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
@@ -68,7 +69,7 @@ public class BonsaiTrees2 {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void startServer(FMLServerAboutToStartEvent event) {
-        IReloadableResourceManager manager = event.getServer().getResourceManager();
+        IReloadableResourceManager manager = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
         manager.addReloadListener((IResourceManagerReloadListener) resourceManager -> {
             RecipeManager recipeManager = event.getServer().getRecipeManager();
             if(!ModObjects.soilRecipeHelper.hasRecipes(recipeManager)) {

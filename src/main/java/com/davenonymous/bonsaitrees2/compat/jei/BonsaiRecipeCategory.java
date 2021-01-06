@@ -1,6 +1,7 @@
 package com.davenonymous.bonsaitrees2.compat.jei;
 
 import com.davenonymous.bonsaitrees2.BonsaiTrees2;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
@@ -51,20 +52,20 @@ public class BonsaiRecipeCategory implements IRecipeCategory<BonsaiRecipeWrapper
     }
 
     @Override
-    public void draw(BonsaiRecipeWrapper recipe, double mouseX, double mouseY) {
-        slotDrawable.draw(0, 19*0);
-        slotDrawable.draw(0, 19*1);
+    public void draw(BonsaiRecipeWrapper recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+        slotDrawable.draw(matrixStack, 0, 19*0);
+        slotDrawable.draw(matrixStack, 0, 19*1);
 
-        slotDrawable.draw(80 + 19*0, 19*0);
-        slotDrawable.draw(80 + 19*1, 19*0);
-        slotDrawable.draw(80 + 19*2, 19*0);
-        slotDrawable.draw(80 + 19*3, 19*0);
+        slotDrawable.draw(matrixStack, 80 + 19*0, 19*0);
+        slotDrawable.draw(matrixStack, 80 + 19*1, 19*0);
+        slotDrawable.draw(matrixStack, 80 + 19*2, 19*0);
+        slotDrawable.draw(matrixStack, 80 + 19*3, 19*0);
 
-        slotDrawable.draw(80 + 19*0, 19*1);
-        slotDrawable.draw(80 + 19*1, 19*1);
-        slotDrawable.draw(80 + 19*2, 19*1);
-        slotDrawable.draw(80 + 19*3, 19*1);
-        recipe.drawInfo(getBackground().getWidth(), getBackground().getHeight(), mouseX, mouseY);
+        slotDrawable.draw(matrixStack, 80 + 19*0, 19*1);
+        slotDrawable.draw(matrixStack, 80 + 19*1, 19*1);
+        slotDrawable.draw(matrixStack, 80 + 19*2, 19*1);
+        slotDrawable.draw(matrixStack, 80 + 19*3, 19*1);
+        recipe.drawInfo(getBackground().getWidth(), getBackground().getHeight(), matrixStack, mouseX, mouseY);
     }
 
     @Override
@@ -85,4 +86,5 @@ public class BonsaiRecipeCategory implements IRecipeCategory<BonsaiRecipeWrapper
         recipeLayout.getItemStacks().addTooltipCallback(recipeWrapper);
         recipeLayout.getItemStacks().set(ingredients);
     }
+
 }

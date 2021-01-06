@@ -30,6 +30,9 @@ import net.minecraft.client.settings.AmbientOcclusionStatus;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
@@ -45,7 +48,7 @@ public class BonsaiRecipeWrapper implements IRecipeCategoryExtension, ITooltipCa
     }
 
     @Override
-    public void drawInfo(int recipeWidth, int recipeHeight, double mouseX, double mouseY) {
+    public void drawInfo(int recipeWidth, int recipeHeight, MatrixStack matrixStack, double mouseX, double mouseY) {
         MultiblockBlockModel model = TreeModels.get(sapling.getId());
         if(model == null) {
             return;
@@ -135,8 +138,8 @@ public class BonsaiRecipeWrapper implements IRecipeCategoryExtension, ITooltipCa
     }
 
     @Override
-    public void onTooltip(int slot, boolean isInput, ItemStack stack, List<String> tooltip) {
-        if(stack.isEmpty()) {
+    public void onTooltip(int slot, boolean isInput, ItemStack itemStack, List<ITextComponent> list) {
+        if(itemStack.isEmpty()) {
             return;
         }
 
@@ -144,18 +147,18 @@ public class BonsaiRecipeWrapper implements IRecipeCategoryExtension, ITooltipCa
             if(slot == 0) {
                 // Sapling slot
                 String timeToGrow = TickTimeHelper.getDuration(sapling.baseTicks);
-                tooltip.add(tooltip.size()-1, TextFormatting.YELLOW + I18n.format("bonsaitrees.jei.category.sapling.growtime", timeToGrow));
+                list.add(list.size()-1, new StringTextComponent(I18n.format("bonsaitrees.jei.category.sapling.growtime", timeToGrow)).setStyle(Style.EMPTY.applyFormatting(TextFormatting.GREEN)));
             }
 
             if(slot == 1) {
-                float tickModifier = tickModifiers.getOrDefault(stack.getItem().getRegistryName(), 1.0f);
+                float tickModifier = tickModifiers.getOrDefault(itemStack.getItem().getRegistryName(), 1.0f);
                 String timeToGrow = TickTimeHelper.getDuration((int) (sapling.baseTicks * tickModifier));
-                tooltip.add(tooltip.size()-1, TextFormatting.YELLOW + I18n.format("bonsaitrees.jei.category.sapling.soiltime", timeToGrow));
+                list.add(list.size()-1, new StringTextComponent(I18n.format("bonsaitrees.jei.category.sapling.soiltime", timeToGrow)).setStyle(Style.EMPTY.applyFormatting(TextFormatting.YELLOW)));
             }
         } else {
             // Some output slot
             if(Config.SHOW_CHANCE_IN_JEI.get()) {
-                tooltip.add(tooltip.size() - 1, TextFormatting.YELLOW + I18n.format("bonsaitrees.jei.category.growing.chance", (int) (slotChances[slot - 2] * 100)));
+                list.add(list.size() - 1, new StringTextComponent(I18n.format("bonsaitrees.jei.category.growing.chance", (int) (slotChances[slot - 2] * 100))).setStyle(Style.EMPTY.applyFormatting(TextFormatting.RED)));
             }
         }
     }

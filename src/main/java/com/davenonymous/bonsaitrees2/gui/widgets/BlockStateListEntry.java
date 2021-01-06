@@ -6,12 +6,13 @@ import com.davenonymous.libnonymous.gui.framework.widgets.WidgetFontAwesome;
 import com.davenonymous.libnonymous.gui.framework.widgets.WidgetListEntry;
 import com.davenonymous.libnonymous.gui.framework.widgets.WidgetTextBox;
 import net.minecraft.block.BlockState;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BlockStateListEntry extends WidgetListEntry {
     public BlockState state;
@@ -24,11 +25,11 @@ public class BlockStateListEntry extends WidgetListEntry {
 
         this.setSize(columnWidth, 12);
 
-        String fullText = String.format("%dx %s", count, state.getBlock().getNameTextComponent().getFormattedText());
-        List<ITextComponent> tooltipLines = new ArrayList<>();
-        for(IProperty property : state.getProperties()) {
-            tooltipLines.add(new StringTextComponent(String.format("%s: %s", property.getName(), state.get(property).toString())));
-        }
+        String fullText = String.format("%dx %s", count, state.getBlock().getTranslatedName().getString());
+        List<ITextComponent> tooltipLines = state.getProperties().stream().map(
+                property -> new StringTextComponent(String.format("%s: %s", property.getName(),
+                state.get(property).toString()))).collect(Collectors.toList()
+        );
 
         WidgetTextBox labelWidget = new WidgetTextBox(fullText, 0xA0FFFFFF);
         labelWidget.setTooltipLines(tooltipLines);
