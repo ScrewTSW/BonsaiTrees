@@ -14,7 +14,6 @@ import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
 public class CommandListSaplings implements Command<CommandSource> {
     private static final CommandListSaplings CMD = new CommandListSaplings();
 

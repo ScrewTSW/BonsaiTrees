@@ -16,6 +16,9 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ProxyClient implements IProxy {
+    
+    private static final Minecraft minecraft = Minecraft.getInstance();
+    
     @Override
     public void init() {
         ClientRegistry.bindTileEntityRenderer(Registration.BONSAIPOT_TILE.get(), tileEntityRendererDispatcher -> new BonsaiPotTileEntityRenderer(tileEntityRendererDispatcher));
@@ -31,11 +34,11 @@ public class ProxyClient implements IProxy {
 
     @Override
     public World getClientWorld() {
-        return Minecraft.getInstance().world;
+        return minecraft.world;
     }
 
     @Override
     public PlayerEntity getClientPlayer() {
-        return Minecraft.getInstance().player;
+        return minecraft.player;
     }
 }

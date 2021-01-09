@@ -1,6 +1,5 @@
 package com.davenonymous.bonsaitrees2.loot.function;
 
-import com.davenonymous.bonsaitrees2.BonsaiTrees2;
 import com.davenonymous.libnonymous.misc.ColorProperty;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -9,14 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.LootFunctionType;
-import net.minecraft.loot.LootParameter;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.Set;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class CopyColor extends LootFunction {
     protected CopyColor(ILootCondition[] conditionsIn) {

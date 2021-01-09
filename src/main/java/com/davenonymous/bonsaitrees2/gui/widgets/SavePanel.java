@@ -18,10 +18,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 
 public class SavePanel extends WidgetPanel {
+
+    private static final Minecraft minecraft = Minecraft.getInstance();
+
     MultiblockBlockModel model;
     WidgetTextBox statusBox;
     WidgetCheckbox overwriteFiles;
@@ -95,14 +102,14 @@ public class SavePanel extends WidgetPanel {
             return;
         }
 
-        File assetPath = new File(Minecraft.getInstance().gameDir, "openloader/resources/custombonsais/assets/" + BonsaiTrees2.MODID + "/models/tree/" + treeId.getNamespace());
+        File assetPath = new File(minecraft.gameDir, "openloader/resources/custombonsais/assets/" + BonsaiTrees2.MODID + "/models/tree/" + treeId.getNamespace());
         assetPath.mkdirs();
 
-        File recipePath = new File(Minecraft.getInstance().gameDir, "openloader/data/custombonsais/data/" + BonsaiTrees2.MODID + "/recipes/sapling/" + treeId.getNamespace());
+        File recipePath = new File(minecraft.gameDir, "openloader/data/custombonsais/data/" + BonsaiTrees2.MODID + "/recipes/sapling/" + treeId.getNamespace());
         recipePath.mkdirs();
 
-        File datapackMetaFile = new File(Minecraft.getInstance().gameDir, "openloader/data/custombonsais/pack.mcmeta");
-        File resourcepackMetaFile = new File(Minecraft.getInstance().gameDir, "openloader/resources/custombonsais/pack.mcmeta");
+        File datapackMetaFile = new File(minecraft.gameDir, "openloader/data/custombonsais/pack.mcmeta");
+        File resourcepackMetaFile = new File(minecraft.gameDir, "openloader/resources/custombonsais/pack.mcmeta");
 
         final String metaData = "{\"pack\":{\"description\":\"Additional Bonsai Trees\",\"pack_format\": 5}}";
         if(!datapackMetaFile.exists()) {

@@ -61,10 +61,6 @@ public class SaplingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
                 }
 
                 SaplingDrop drop = new SaplingDrop(element.getAsJsonObject());
-                if(drop == null) {
-                    continue;
-                }
-
                 result.addDrop(drop);
             }
         }

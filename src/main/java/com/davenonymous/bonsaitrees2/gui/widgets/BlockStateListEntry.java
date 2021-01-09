@@ -6,11 +6,9 @@ import com.davenonymous.libnonymous.gui.framework.widgets.WidgetFontAwesome;
 import com.davenonymous.libnonymous.gui.framework.widgets.WidgetListEntry;
 import com.davenonymous.libnonymous.gui.framework.widgets.WidgetTextBox;
 import net.minecraft.block.BlockState;
-import net.minecraft.state.Property;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

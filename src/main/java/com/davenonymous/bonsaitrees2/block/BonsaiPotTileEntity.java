@@ -46,7 +46,7 @@ public class BonsaiPotTileEntity extends BaseTileEntity {
         super(Registration.BONSAIPOT_TILE.get());
     }
 
-    public BonsaiPotTileEntity(TileEntityType type) {
+    public BonsaiPotTileEntity(TileEntityType<?> type) {
         super(type);
     }
 

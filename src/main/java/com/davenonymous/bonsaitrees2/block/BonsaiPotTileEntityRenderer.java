@@ -13,23 +13,19 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraftforge.client.model.data.EmptyModelData;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 public class BonsaiPotTileEntityRenderer extends TileEntityRenderer<BonsaiPotTileEntity> {
-    private static boolean clearLists = false;
-    private static final Random rand = new Random();
+    // private static boolean clearLists = false;
+    // private static final Random rand = new Random();
 
-    private static final Map<MultiblockBlockModel, Integer> glLists = new HashMap<>();
+    // private static final Map<MultiblockBlockModel, Integer> glLists = new HashMap<>();
 
     public BonsaiPotTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
-    public static void clearGlLists() {
+    /*public static void clearGlLists() {
         BonsaiPotTileEntityRenderer.clearLists = true;
-    }
+    }*/
 
 
     /*
